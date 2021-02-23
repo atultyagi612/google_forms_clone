@@ -1,0 +1,48 @@
+@media screen and (max-width: 768px) {
+
+    .single_form{
+        margin-left: 69px;
+        width: 210px;
+    }
+    .create_form{
+        margin-left: 0px;
+    }
+    .dropdown-menu{
+        margin-left: -157px;
+    }
+
+    /* for create form  */
+    .container{
+        width: 100%;
+        padding: 0px;
+        align-items: center;
+    }
+    #form{
+        width: 100%;
+    }
+    .question{
+        margin-right: 7px;
+        margin-left: 7px;
+    }
+    #createFOrmnav{
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    #second{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .question{
+        padding: 21px;
+    }
+    #required{
+        position: initial;
+    }
+    input[type=checkbox],input[type=radio]{
+        height: 30px;
+        width: 17px;
+        margin-right: 13px;
+    }
+}

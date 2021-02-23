@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/icon.svg" />
+    <title>Forms | create</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.css"
+    rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        body {
+          margin:0px;
+        }
+      
+        .center {
+          display:inline;
+          margin: 3px;
+        }
+      
+        .form-input {
+          width:100px;
+          padding:3px;
+          background:#fff;
+          border:2px dashed dodgerblue;
+        }
+        .form-input input {
+          display:none;
+        }
+        .form-input label {
+          display:block;
+          width:100px;
+          height: auto;
+          max-height: 100px;
+          background:#333;
+          border-radius:10px;
+          cursor:pointer;
+        }
+      
+        .form-input img {
+          width:100px;
+          height: 100px;
+          margin: 2px;
+          opacity: .4;
+        }
+      
+        .imgRemove{
+          position: relative;
+          bottom: 114px;
+          left: 68%;
+          background-color: transparent;
+          border: none;
+          font-size: 30px;
+          outline: none;
+        }
+        .imgRemove::after{
+          content: ' \21BA';
+          color: #fff;
+          font-weight: 900;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+        .small{
+          color: firebrick;
+        } 
+        .image{
+          max-width: 100%;
+    max-height: 100%;
+        }
+        #required{
+          display: inline-block;
+                        position: absolute;
+                        right: 10px;
+        }
+        @media screen and (max-width: 768px) {
+          body{
+            width: 120%;
+          }
+
+        }
+        </style>
+        <link rel="stylesheet" href="/mobile.css">
+</head>
+
+<body>
+  <div class="screenshot" id="screenshot">
+
+  
+    <nav  class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="justify-content: space-between;">
+      <div style="display: flex;">
+        <img src="/icon.svg" alt="icon" style="height: 27px;">
+        <a class="navbar-brand" href="/">Forms</a>
+    </div>
+    <div id="second">
+
+    
+        <button style="    background-color: #f0f8ff00; border: 0px;" type="button" class="" data-toggle="modal" data-target="#exampleModal" data-backdrop="false">
+          <svg id="themeID" style="    width: 31px;
+          height: 34px;" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m26.385 358.385c17.016-17.015 39.607-26.387 63.615-26.385 17.983 0 54.182-29.223 66.561-59.105 3.579-8.642 6.366-20.426-.688-27.48-7.396-7.398-8.17-8.168-8.194-8.193-.03-.029-.06-.059-.09-.09-23.394-23.393-23.393-61.459.002-84.854l63.031-63.031c5.856-5.857 15.355-5.859 21.213 0l190.92 190.918c5.858 5.857 5.858 15.355 0 21.214l-63.033 63.032c-11.298 11.297-26.365 17.52-42.427 17.52-.001 0 0 0-.001 0-16.06 0-31.128-6.223-42.442-17.535-.042-.041-.63-.631-8.267-8.27-2.997-2.996-6.674-4.393-11.572-4.393-29.428 0-75.013 46.683-75.013 70.267 0 49.623-40.373 89.998-89.999 90-.001 0-.001 0-.001 0-24.009 0-46.602-9.371-63.614-26.387-17.016-17.013-26.386-39.605-26.386-63.613 0-24.007 9.37-46.601 26.385-63.615z" fill="#ffe470"/><path d="m327.295 184.706 95.46 95.459c5.858 5.857 5.858 15.355 0 21.214l-63.033 63.032c-11.298 11.297-26.365 17.52-42.427 17.52-.001 0 0 0-.001 0-16.06 0-31.128-6.223-42.442-17.535-.042-.041-.63-.631-8.267-8.27-2.997-2.996-6.674-4.393-11.572-4.393-29.428 0-75.013 46.683-75.013 70.267 0 49.623-40.373 89.998-89.999 90-.001 0-.001 0-.001 0-24.009 0-46.602-9.371-63.613-26.387z" fill="#fabe2c"/><path d="m210.622 89.247 84.854-84.854c5.857-5.857 15.355-5.857 21.213 0l190.918 190.918c5.858 5.858 5.858 15.355 0 21.213l-84.854 84.855z" fill="#f37"/><path d="m512 205.922c-.001 3.838-1.466 7.674-4.394 10.602l-84.854 84.855-106.063-106.066 95.46-95.461 95.458 95.459c2.928 2.928 4.393 6.764 4.394 10.602v.009z" fill="#cc295f"/><circle cx="90" cy="422" fill="#f37" r="15"/><path d="m90 437c-4.143 0-7.893-1.678-10.606-4.393l21.213-21.213c2.714 2.714 4.393 6.464 4.393 10.606 0 8.286-6.716 15-15 15z" fill="#cc295f"/></svg>
+        </button>
+        <i   class="fa fa-gear setting" style="    font-size: 24px;
+    margin-right: 17px;
+    margin-left: 16px;
+    cursor: pointer;" onclick="setting()">
+          
+        </i>
+        <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <button id="submitbutton" type="submit" class="btn btn-outline-success" onclick="submit()">Submit</button>
+
+      </div>
+    </nav>
+
+
+
+    <!-- modal select image  -->
+    <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Select Images</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="formimage">
+                <input class="form-control form-control-lg" style="width: 100%;" id="avatar" type="file" accept="image/*" onchange="readURL(this);">
+                <input type="submit" id="submit_image" value="Submit" style="display: none;" />
+              </form>
+              <img  id="preview_image" src=""  alt="your image" style="height: 100px; display: none;">
+              <div  class="loader" id="loader" style="display: none;">
+                <svg class="svgloader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1728 1296">
+                  <rect x="153.55" y="492.48" width="311.04" height="311.04" fill="#ff499e" />
+                  <rect x="519.55" y="492.48" width="311.04" height="311.04" fill="#99267e" />
+                  <rect x="883.41" y="492.48" width="311.04" height="311.04" fill="#9c5ea8" />
+                  <rect x="1263.41" y="492.48" width="311.04" height="311.04" fill="#798fd4" />
+                </svg>
+              </div>
+              <input type="range" name="" id="imagerange" min="50" max="400" value="100" oninput="changesize('preview_image',this)" >
+            <div id="status"></div>
+            
+            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="savechanges()" data-dismiss="modal">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    <!-- FORM CONTENT -->
+    <div class="container" id="main_container">
+
+        <form action="/search" id="form" method="post">
+            <div class="questions">
+
+                
+                
+                  <!-- Image   -->
+
+                  <div class="question" id="themeimageid" style="display: none; max-height: 105px;     height: 155px;
+                  border: none;">
+                    
+                      <img id="themeImageID_" src="" alt="" >
+                    </div>
+                
+
+                <!-- title  -->
+
+                <div class="question">
+                    <div class="description_class">
+                        <input  type="text" name="Title" value="Title" id="title">
+                        <textarea id="discpn" type="text" name="Description" placeholder="Form description"
+                            rows="1"></textarea>
+                    </div>
+                </div>
+
+                <textarea id="flow" type="text" name="flow" placeholder="Form description" style="display: none;"
+                    rows="1"></textarea>
+                <textarea id="additional_data" type="text" name="additional_data" placeholder="Form description" style="display: none;"
+                    rows="1"></textarea>
+
+                <div class="question question_option-prop" id="id_1" onmouseup="addprop(event,'1')">
+                    <div class="first">
+                        <input  type="text" style="width: 60%;" name="questions_1" value="Question-1">
+                        <button type="button" class="btn imagebutton" data-toggle="modal" data-target="#exampleModalLong" onclick="selectedbody('id_1')" >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+                          </svg>
+                        </button>
+
+                        <button class="btn videobut" type="button" onclick="addvideo('1')" >
+                          <img class="videoicon" src="/video.svg" alt="">
+                        </button>
+                        <select class="form-control" name="Type_1" onclick="additem(event,'div_option-1')">
+                            <option value="MCQ">Multiple Choice</option>
+                            <option value="checkbox">Checkbox</option>
+                            <option value="Paragraph">Paragraph</option>
+                            <option value="short_answ">Short answer</option>
+                            <option value="Email">Email</option>
+                            <option value="date">Date</option>
+                            <option value="Time">Time</option>
+                        </select>
+
+
+                    </div>
+
+                    <div class="image_container">
+                      
+                    </div>
+                    <div class="video_container">
+                      
+                    </div>
+
+                    <div class="options" id="div_option-1">
+                        <div class="form-check" style="display: flex; align-items: center;">
+                            <input class="input_check" type="radio" name="Answ-1" id="exampleRadios2" value="1" checked>
+                            <input class="" type="text" name="option-1" value="option one">
+                        </div>
+                    </div>
+                    <a class="double_item" id="double_item-1" style="color: #5a5acc;
+                    cursor: pointer;" onclick="doubleItem(event,`text`,`div_option-1`)">Add one
+                        more</a>
+
+
+                    <div class="answer_key" id="answer_key-1">
+                        <!-- <input type="number" id="Answ-1" name="Answ-1" value="1"> -->
+                        <label for="Marks-1">Points :-</label>
+                        <input type="number" id="Marks-1" name="Marks-1" value="20">
+
+                    </div>
+                    <div id="required">
+                    
+
+                      <label class="switch">
+                          <input class="isquiz" id="isquiz" name="required_1" type="checkbox">
+                          <span class="slider round"></span>
+                        </label>
+                        <label for="isquiz" style="margin-right: 4px;">Reqiured </label>
+                  
+                        <button type="button" class="btn btn-outline-info"
+                            onclick='delete_this(event,"id_1")'>Delete</button>
+                        <button type="button" class="btn btn-outline-info" onclick='add_afterend("id_1")'>Add</button>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </form>
+
+
+
+        <!-- Setting *********** -->
+        <div class="setting_menu" style="display: none;">
+            <!-- Tabs navs -->
+            <ul class="nav nav-tabs nav-fill mb-3 addition" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="ex2-tab-1" data-mdb-toggle="tab" href="#ex2-tabs-1" role="tab"
+                        aria-controls="ex2-tabs-1" aria-selected="true">General</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="ex2-tab-2" data-mdb-toggle="tab" href="#ex2-tabs-2" role="tab"
+                        aria-controls="ex2-tabs-2" aria-selected="false">conformation message</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="ex2-tab-3" data-mdb-toggle="tab" href="#ex2-tabs-3" role="tab"
+                        aria-controls="ex2-tabs-3" aria-selected="false">Quizzes</a>
+                </li>
+            </ul>
+            <!-- Tabs navs -->
+
+            <!-- Tabs content -->
+            <div class="tab-content addition" id="ex2-content">
+                <div style="
+                margin-left: 17px;
+            " class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1">
+                  <!-- first tab  -->
+
+
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="response_reciept">
+                      <label class="form-check-label" for="defaultCheck1">
+                        response reciept <span style="color: #9f9f9f;">'if login'</span>
+                      </label>
+                    </div>
+
+                    <div>
+
+                      <hr>
+                      <h4>Require sign in :</h4>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="limit">
+                        <label class="form-check-label" for="defaultCheck1">
+                          Limit to 1 response 
+                        </label>
+                      </div>
+                    </div>
+
+
+                </div>
+                <div style="    margin-left: 12px;" class="tab-pane fade" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2">
+                  <label for="exampleInputEmail1">conformation message</label>
+                  <input style="     width: 96%;   border: none; border-radius: 0px;
+                  border-bottom: 1px solid black;" type="text" class="form-control" id="conformation_message" aria-describedby="emailHelp" placeholder="conformation message">
+              
+                </div>
+                <div class="tab-pane fade" id="ex2-tabs-3" role="tabpanel" aria-labelledby="ex2-tab-3">
+                    <div style="display: flex;" >
+
+                        <label class="switch">
+                            <input class="isquiz" id="tisquiz" type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <div style="    margin-left: 16px;display: flex; flex-direction: column;" >
+                            <p style="    margin-bottom: -9px;" >Make this quiz</p>
+                            <p style="    color: #9f9f9f;
+                            font-family: emoji;">Assign point values to questions and allow auto-grading.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="quiz-options" id="quiz_options" style="    margin-left: 29px;">
+                        <h2>Quiz Options</h2>
+                        <h3 style="    font-size: 20px;
+                        font-family: emoji;" >Release grade:</h3>
+                        <div id="release_grade">
+                            <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="flexRadioDefault"
+                                  id="submissiontype1"
+                                />
+                                <label class="form-check-label" for="submissiontype1">Immediately after each submission</label>
+                              </div>
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="flexRadioDefault"
+                                  id="submissiontype2"
+                                  checked
+                                />
+                                <label class="form-check-label" for="submissiontype2">Later, after manual review</label>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="color: grey ; border: 1px solid;" >
+            <div>
+                <button style="    margin-left: 23px;
+                margin-top: 27px;" class="btn" onclick="check()">save</button>
+            </div>
+            <!-- Tabs content -->
+        </div>
+
+
+    </div>
+
+
+
+    <!-- update modal  -->
+
+   <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Theme options</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="savetheme()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- body  -->
+
+        <label for="themeImage">theme image</label>
+        <input type="text" class="themeImage" id="themeImage" placeholder="Enter URL">
+
+
+        <label for="favcolor">background color</label>
+  <input type="color" id="background_color"  value="#e5e8eb" oninput="setproperty()"><br><br>
+        <label for="favcolor">foreground color</label>
+  <input type="color" id="foreground_color"  value="#2882a5" oninput="setproperty()"><br><br>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+    <div id="output"></div> 
+
+    <!-- FOOTER    -->
+
+    <div class="card">
+        <div class="card-body fixed-bottom footer">
+            <div class="fot1">
+                <button class="btn btn-secondary" onclick="addCode()">Add Stuff</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.5/gsap.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.js"
+></script>
+<script src= 
+"https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> 
+    </script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+
+<script>
+
+
+function  animation(){
+if(currentImagestatue=='failed'){
+  document.getElementById('loader').style.display='inherit'
+
+}
+else if(currentImagestatue=='none'){
+  document.getElementById('loader').style.display='inherit'
+
+}
+else{
+  document.getElementById('loader').style.display='none'
+
+}}
+    // upload image 
+    document.getElementById('formimage').onsubmit = function(event){
+    event.preventDefault() // prevent form from posting without JS
+    var xhttp = new XMLHttpRequest(); // create new AJAX request
+
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) { // sucess from server
+        document.getElementById("status").innerHTML = 'Done';
+        document.getElementById("preview_image").style.display = "block";
+        currentImagestatue=this.responseText
+        console.log(currentImagestatue)
+        animation()
+      }else{ // errors occured
+        document.getElementById("status").innerHTML = 'failed' ;
+        currentImagestatue="none"
+        console.log(currentImagestatue)
+        animation()
+      }
+    }
+
+    xhttp.open("POST", "upload")
+    var formData = new FormData()
+        // the text data
+    formData.append('avatar', document.getElementById('avatar').files[0]) // since inputs allow multi files submission, therefore files are in array
+    xhttp.send(formData)
+}
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

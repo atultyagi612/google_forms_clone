@@ -1,0 +1,22 @@
+
+.option{
+    display: flex;
+    align-items: center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.submitButton{
+    width: 89px;
+    margin-left: 71px;
+    margin-bottom: 90px;
+    background-color: var(--forground);
+    color: white;
+    
+}
+#formID{
+    margin-bottom: 6px;
+    
+}

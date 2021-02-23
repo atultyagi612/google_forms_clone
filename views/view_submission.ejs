@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/icon.svg" />
+    <title>Forms | View</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.css"
+    rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/mobile.css">
+    <link rel="stylesheet" href="/answ.css">
+
+    <style>
+        .questions{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <% let marksobtain = JSON.parse(user_submission.correct_answer)%>
+    <% let answers = JSON.parse(user_submission.Answers) %>
+
+    
+    <div class="container">
+
+    
+    <form action="/update_student_submission" method="POST" id="formID" >
+        <!-- main image  -->
+        <% if(fulldata.themeImage !="") {%>
+        <div class="question" id="themeimageid" style=' height: 149px; border: none; max-height: 175px; background-image: url(" <%= fulldata.themeImage %>");'>
+          </div>
+          <%}%>
+          <!-- title of the form   -->
+          <div class="question">
+            <div class="description_class">
+                <label    id="title"><%= data['Title'] %></label>
+                <label    id="description"><%= data['Description'] %></label>
+                <hr>
+                <h5 style="    align-self: flex-end;">Marks got :-  <%= marks %></h5>
+                
+            </div>
+        </div>
+
+        <% const required=[]  %>
+
+        <% let direction = data['flow'].split(",") %>
+        <%  for(let i=1;i<direction.length;i++){%>
+
+            
+<!-- ********** for loop start for question ********************* -->
+<div class="question" id="id_1">
+    <!-- question heading ******** -->
+    <div class="first">
+
+        <h2><%= data[`questions_${i}`] %></h2>
+        <div style="display:flex ; " >
+
+            <% if( data[`required_${i}`]=='on' ){%>
+                <% required.push(i) %>
+                <h7 style="color: red;" >*</h7>
+                <%}%>
+                
+                <h6 style="margin-left: 10px;" >Marks got:- <input type="text" name='marks' class="marksgot" value=<%= marksobtain[`${i-1}`]*data[`Marks-${i}`] %> disabled> /<%= data[`Marks-${i}`] %></h6>
+            </div>
+    </div>
+    
+
+    <% let  imagedata = data[`image_${i}`] 
+    let image_size= data[`size_height${i}`]
+    let video = data[`video_${i}`]
+    %>
+
+    
+
+    <%if(imagedata){%>
+        <!-- Image  -->
+        
+        <div class="question_image" on=gell()>
+            <h1></h1>
+            <img src=<%=  imagedata %> alt="" style="height:<%= image_size %>">
+            
+        </div>
+        <%}%>
+
+        <!-- VIdeos    -->
+        <% if(video){%>
+
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src=<%= video %> ></iframe>
+            </div>
+            <%} %>
+        
+        
+    <!-- options if else condition          *************** -->
+    <% if(data[`Type_${i}`]=="MCQ"){ %>
+        <!-- for mcq  type     -->
+        <% const mcq= data[`option-${i}`] ; const mcq_length=mcq.length %>
+        <% if(typeof mcq=='object'){ %>
+            <!-- display options ********* -->
+            <% for(let k=0;k<mcq_length ;k++ ) { %>
+                
+                <div class="option">
+                <input class="input_check Answ-<%= i %>" type="radio" name='Answ-<%= i %>'  value='<%= k+1 %>' <% if(answers[`Answ-${i}`]==k+1){%> <%= "checked" %> <%} %> >
+                
+                
+        <div>
+            <p><%= mcq[k] %></p>
+        </div>
+    </div>
+            <%} %>
+          <% } else{ %>  
+            <div class="option">
+                <input class="input_check Answ-<%= i %>" type="radio" name='Answ-<%= i %>'  value='1' <% if(answers[`Answ-${i}`]==1){%> <%= "checked" %> <%} %> >
+                
+                
+        <div>
+            <p><%= mcq %></p>
+        </div>
+    </div>
+         <% } %>
+        
+      <% } else if(data[`Type_${i}`]=="checkbox"){ %>  
+        <!-- for checkbox type    -->
+        <% const checkbox= data[`option-${i}`] ; const checkbox_length=checkbox.length %>
+        <% if(typeof checkbox=='object'){ %>
+            <!-- display options ********* -->
+            <% for(let k=0;k<checkbox_length ;k++ ) { %>
+                
+                <div class="option">
+                <input class="input_check Answ-<%= i %>" type="checkbox" name='Answ-<%= i %>'  value='<%= k+1 %>' <% if( typeof answers[`Answ-${i}`] =='object'){%>
+                    <% if(answers[`Answ-${i}`][k]==k+1){%> <%= "checked" %> <%} %>
+                <%}else{%>
+                    <% if(answers[`Answ-${i}`]==k+1){%> <%= "checked" %> <%} %>
+                <%} %> >
+        <div>
+            <p><%= checkbox[k] %></p>
+        </div>
+    </div>
+            <%} %>
+          <% } else{ %>  
+            <div class="option">
+                <input class="input_check Answ-<%= i %>" type="checkbox" name='Answ-<%= i %>'  value='1' <% if( typeof answers[`Answ-${i}`] =='object'){%>
+                    <% if(answers[`Answ-${i}`]==1){%> <%= "checked" %> <%} %>
+                <%}else{%>
+                <%} %> >
+        <div>
+            <p><%= checkbox %></p>
+        </div>
+    </div>
+         <% } %>
+
+     <% }else if(data[`Type_${i}`]=="Paragraph"){ %>  
+        <!-- for Paragraph type    -->
+        
+        <div class="option">
+        <textarea name="Answ-<%= i %>" class='Answ-<%= i %>' class="form-control"  rows="3"  ><%= answers[`Answ-${i}`]%></textarea>
+    </div>
+     <% }else if(data[`Type_${i}`]=="date"){ %>  
+        <!-- for date type    -->
+        <div class="option">
+            <input class='Answ-<%= i %>' type="date" id="birthday" name="Answ-<%= i %>" value=<%= answers[`Answ-${i}`]%>>
+        </div>
+     <% }else if(data[`Type_${i}`]=="Email"){ %>  
+        <!-- for Email type    -->
+        <div class="option">
+            <input class='Answ-<%= i %>' type="email" name="Answ-<%= i %>" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" value=<%= answers[`Answ-${i}`]%> >
+        </div>
+     <% }else if(data[`Type_${i}`]=="Time"){ %>  
+        <!-- for Time type    -->
+        <div class="option">
+            <input class='Answ-<%= i %>' type="time" id="appt" name="Answ-<%= i %>" value=<%= answers[`Answ-${i}`]%> >
+             </div>
+     <% }else if(data[`Type_${i}`]=="short_answ"){ %>  
+        <!-- for short_answ type    -->
+        <div class="option">
+            <input class='Answ-<%= i %>' type="text" name="Answ-<%= i %>" class="form-control"  placeholder="Your Answer" value=<%= answers[`Answ-${i}`]%> >
+       </div>
+     <% }else{%>
+        <h1>else</h1>
+    <%} %>
+
+
+
+</div>
+        
+            
+            
+
+
+
+<!--******* for loop end******************* -->
+        <%}%>
+        
+            
+    
+    </form>
+    
+</div>
+
+    
+<script>
+
+    var r = document.querySelector(':root');
+r.style.setProperty('--forground', "<%- fulldata.foreground_color %>");
+r.style.setProperty('--background',"<%= fulldata.background_color %>");
+  var required="<%= required %>".split(",")
+  
+function gell(){
+    console.log("hllo")
+}
+
+var fields = document.getElementById("formID").getElementsByTagName('*');
+for(var i = 0; i < fields.length; i++)
+{
+    fields[i].disabled = true;
+}
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/icon.svg" />
+    <title>Forms | view</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link 
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.css"
+    rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/mobile.css">
+    <link rel="stylesheet" href="/answ.css">
+</head>
+
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="flex-direction: column;">
+        <div class=" navbar-expand-lg navbar-light bg-light navbar" style="    width: 100%;
+        display: flex;
+        justify-content: space-between;">
+
+<div>
+    <img src="/icon.svg" alt="icon" style="height: 27px;">
+    <a class="navbar-brand" href="/">Forms</a>
+</div>
+            <div class="btn-group dropright">
+                <button type="image"  data-toggle="dropdown" aria-haspopup="false" aria-expanded="true" style="    border: none;">
+                    <div class="image">
+                        <img style="    border-radius: 61px;
+                        height: 43px;" src="<%=user.image %>" alt="">
+                    </div>
+                </button>
+                <div class="dropdown-menu" style="    margin-left: -119px;">
+                    <p><%= user.displayname %></p>
+                    <p><%= user.email %></p>
+                    <p>
+                        <a href="/logout">logout</a>
+                    </p>
+                    <p><a href="/change_account">switch account</a></p>
+                </div>
+              </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="bottom" style="height: 41px;">
+
+        <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link active"
+                id="ex1-tab-1"
+                data-mdb-toggle="tab"
+                href="#ex1-tabs-1"
+                role="tab"
+                aria-controls="ex1-tabs-1"
+                aria-selected="true"
+                >Questions</a
+              >
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link"
+                id="ex1-tab-2"
+                data-mdb-toggle="tab"
+                href="#ex1-tabs-2"
+                role="tab"
+                aria-controls="ex1-tabs-2"
+                aria-selected="false"
+                >Responses</a
+              >
+            </li>
+            
+          </ul>
+    </div>
+    </nav>
+    
+
+    <div class="tab-content" id="ex1-content">
+        <div
+          class="tab-pane fade show active"
+          id="ex1-tabs-1"
+          role="tabpanel"
+          aria-labelledby="ex1-tab-1"
+        >
+          
+    <%let form_id = temp._id;
+                let form_data=JSON.parse(temp.form_data)
+                let title = temp.Title
+                let release_Grade = temp.release_Grade
+                let isQuiz=temp.isQuiz
+                
+                %>
+                
+
+                
+    <!-- FORM CONTENT -->
+    
+
+    
+    <div class="container">
+
+    
+        <form action="/answw" method="POST" id="formID" >
+            <!-- main image  -->
+            <% if(fulldata['themeImage']!="") {%>
+                <div class="question" id="themeimageid" style='border: none; max-height: 175px; background-image: url(" <%= fulldata['themeImage'] %>");     height: 146px;'>
+                </div>
+                <%}%>
+              <!-- title of the form   -->
+              <div class="question" style="    border: none;
+              border-top: 11px solid var(--forground);">
+                <div class="description_class">
+                    <label    id="title"><%= data['Title'] %></label>
+                    <label    id="description"><%= data['Description'] %></label>
+                    
+                </div>
+            </div>
+    
+            <% const required=[]  %>
+    
+            <% let direction = data['flow'].split(",") %>
+            <%  for(let i=1;i<direction.length;i++){%>
+    
+                
+    <!-- ********** for loop start for question ********************* -->
+    <div class="question" id="id_1">
+        <!-- question heading ******** -->
+        <div class="first">
+    
+            <h2><%= data[`questions_${i}`] %></h2>
+            <div style="display:flex ; " >
+    
+                <% if( data[`required_${i}`]=='on' ){%>
+                    <% required.push(i) %>
+                    <h7 style="color: red;" >*</h7>
+                    <%}%>
+                    
+                    <h6 style="margin-left: 10px;" >Marks:- <%= data[`Marks-${i}`] %></h6>
+                </div>
+        </div>
+        
+    
+        <% let  imagedata = data[`image_${i}`] 
+        let image_size= data[`size_height${i}`]
+        let video = data[`video_${i}`]
+        %>
+    
+        
+    
+        <%if(imagedata){%>
+            <!-- Image  -->
+            
+            <div class="question_image" on=gell()>
+                <h1></h1>
+                <img src=<%=  imagedata %> alt="" style="height:<%= image_size %>">
+                
+            </div>
+            <%}%>
+    
+            <!-- VIdeos    -->
+            <% if(video){%>
+    
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src=<%= video %> ></iframe>
+                </div>
+                <%} %>
+            
+            
+        <!-- options if else condition          *************** -->
+        <% if(data[`Type_${i}`]=="MCQ"){ %>
+            <!-- for mcq  type     -->
+            <% const mcq= data[`option-${i}`] ; const mcq_length=mcq.length %>
+            <% if( typeof mcq=='object'){ %>
+                <!-- display options ********* -->
+                
+                <% for(let k=0;k<mcq_length ;k++ ) { %>
+                    <div class="option">
+                    <input class="input_check Answ-<%= i %>" type="radio" name='Answ-<%= i %>'  value='<%= k+1 %>'>
+            <div>
+                <p><%= mcq[k] %></p>
+            </div>
+        </div>
+                <%} %>
+              <% } else{ %>  
+                <div class="option">
+                    <input class="input_check Answ-<%= i %>" type="radio" name='Answ-<%= i %>'  value='1'>
+            <div>
+                <p><%= mcq %></p>
+            </div>
+        </div>
+             <% } %>
+            
+          <% } else if(data[`Type_${i}`]=="checkbox"){ %>  
+            <!-- for checkbox type    -->
+            <% const checkbox= data[`option-${i}`] ; const checkbox_length=checkbox.length %>
+            <% if( typeof checkbox=='object'){ %>
+                <!-- display options ********* -->
+                <% for(let k=0;k<checkbox_length ;k++ ) { %>
+                    <div class="option">
+                    <input class="input_check Answ-<%= i %>" type="checkbox" name='Answ-<%= i %>'  value='<%= k+1 %>'>
+            <div>
+                <p><%= checkbox[k] %></p>
+            </div>
+        </div>
+                <%} %>
+              <% } else{ %>  
+                <div class="option">
+                    <input class="input_check Answ-<%= i %>" type="checkbox" name='Answ-<%= i %>'  value='1'>
+            <div>
+                <p><%= checkbox %></p>
+            </div>
+        </div>
+             <% } %>
+    
+         <% }else if(data[`Type_${i}`]=="Paragraph"){ %>  
+            <!-- for Paragraph type    -->
+            <div class="option">
+            <textarea name="Answ-<%= i %>" class='Answ-<%= i %>' class="form-control"  rows="3"></textarea>
+        </div>
+         <% }else if(data[`Type_${i}`]=="date"){ %>  
+            <!-- for date type    -->
+            <div class="option">
+                <input class='Answ-<%= i %>' type="date" id="birthday" name="Answ-<%= i %>">
+            </div>
+         <% }else if(data[`Type_${i}`]=="Email"){ %>  
+            <!-- for Email type    -->
+            <div class="option">
+                <input class='Answ-<%= i %>' type="email" name="Answ-<%= i %>" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+         <% }else if(data[`Type_${i}`]=="Time"){ %>  
+            <!-- for Time type    -->
+            <div class="option">
+                <input class='Answ-<%= i %>' type="time" id="appt" name="Answ-<%= i %>">
+                 </div>
+         <% }else if(data[`Type_${i}`]=="short_answ"){ %>  
+            <!-- for short_answ type    -->
+            <div class="option">
+                <input class='Answ-<%= i %>' type="text" name="Answ-<%= i %>" class="form-control"  placeholder="Your Answer">
+           </div>
+         <% }else{%>
+            <h1>else</h1>
+        <%} %>
+    
+    
+    
+    </div>
+            
+                
+                
+    
+    
+    
+    <!--******* for loop end******************* -->
+            <%}%>
+            
+                
+        
+        </form>
+    
+</div>
+        </div>
+        <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+
+            <div class="container" id="main_container" style="display: flex; flex-direction: column;" >
+                
+                <div class="question">
+                    <div class="description_class">
+                        <div>
+                            <h4><%= temp2 %> Responses</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="responses">
+                    
+                    <% for(let i=0;i<temp2 ; i++) { %>
+
+                        <div class="question">
+                            <div class="">
+                                <div>
+                                    <div style="display: flex;     justify-content: space-between;">
+
+                                        <h4><%= reponseData[i].name %> </h4>
+                                        <h4>Marks :- <%= reponseData[i].Marks %> </h4>
+                                    </div>
+                                    <h4><%= reponseData[i].email %> </h4>
+                                    <!-- <h4><%= reponseData %> </h4> -->
+                                </div>
+                            </div>
+                            <a href='/update_submission/<%= reponseData[i]._id %>' target="_blank"><button class="btn">Update</button></a>  
+                        </div>
+
+                    <%} %>
+                    
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+    </div>
+
+
+
+
+    <div id="output"></div> 
+
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.js"
+    ></script>
+    <!-- <script src="/update_script.js"></script> -->
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var r = document.querySelector(':root');
+r.style.setProperty('--forground', "<%- fulldata.foreground_color %>");
+r.style.setProperty('--background',"<%= fulldata.background_color %>");
+        let tim = document.getElementsByClassName('questions')[0].childElementCount-3;
+        var form_id ="<%= temp._id%>"
+        let form_data="<%=JSON.parse(temp.form_data)%>";
+        let title = "<%=temp.Title%>";
+        let release_Grade = "<%=temp.release_Grade%>";
+        let isQuiz="<%=temp.isQuiz%>";
+
+        quiz_or_not()
+                
+        function quiz_or_not(){
+            if(isQuiz=='true'){
+                
+            }
+            else{
+                for (let k = 1; k <= tim; k++) {
+            document.getElementById(`answer_key-${k}`).style.display = "none";
+            var nodes = document.getElementById(`answer_key-${k}`).getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = true;
+            }
+        }
+        var x = document.getElementsByClassName("input_check");
+var i;
+for (i = 0; i < x.length; i++) {
+    x[i].disabled = true;
+}
+    }
+        }
+
+        
+
+
+        console.log('hello')
+        function submit() {
+    addition_data();
+    const list_flow = []
+    const temp = document.querySelectorAll('.question');
+    for (let i = 1; i < temp.length; i++) {
+        list_flow.push(temp[i].id.slice(3, temp[i].id.length));
+    }
+    console.log(list_flow)
+    document.getElementById("flow").value = list_flow
+    document.getElementById("form").submit()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function setting() {
+    console.log('done')
+    document.querySelector(".setting_menu").setAttribute("style", "display : block")
+    document.querySelector("#form").setAttribute("style", "display: none;")
+
+}
+
+function check() {
+    if (document.getElementById('isquiz').checked) {
+        console.log("true")
+        // 
+        console.log(tim)
+        for (let k = 1; k <= tim; k++) {
+            document.getElementById(`answer_key-${k}`).style.display = "block";
+            var nodes = document.getElementById(`answer_key-${k}`).getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = false;
+            }
+        }
+
+    }
+    else {
+        console.log("false")
+        for (let k = 1; k <= tim; k++) {
+            document.getElementById(`answer_key-${k}`).style.display = "none";
+            var nodes = document.getElementById(`answer_key-${k}`).getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = true;
+            }
+        }
+    }
+    document.querySelector(".setting_menu").setAttribute("style", "display : none")
+    document.querySelector("#form").setAttribute("style", "display: block;")
+
+}
+    </script>
+    
+    
+
+</body>
+
+</html>

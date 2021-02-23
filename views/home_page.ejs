@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/icon.svg" />
+    <title>Forms</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+    <style>
+        .forms {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 2rem;
+        }
+
+        .single_form {
+            transition: all 0.3s;
+            text-decoration: none;
+            color: rgb(29, 25, 25);
+
+            background-color: white;
+            padding: 20px;
+        }
+
+        .single_form:hover {
+            text-decoration: none;
+            color: rgb(29, 25, 25);
+            ;
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
+        }
+
+        .custom_dot {
+            background-color: rgb(255, 255, 255);
+            border-radius: 32px;
+            outline: none;
+
+        }
+
+        .first_container {
+            background-color: #F1F3F4;
+            height: 300px;
+        }
+        .create_form{
+            display: flex;
+            flex-direction: column;
+            margin-left: 100px;
+        }
+        .second{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+    <link rel="stylesheet" href="/mobile.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"
+        style="align-items: center;    justify-content: space-between;">
+        <div>
+            <img src="/icon.svg" alt="icon" style="height: 27px;">
+            <a class="navbar-brand" href="/">Forms</a>
+        </div>
+
+
+        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">     -->
+        <!-- <form class="form-inline my-2 my-lg-0" style="    width: 562px;">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="
+            width: 63%;
+        ">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+        <!-- </div> -->
+
+        
+
+          <div class="btn-group dropright">
+            <button type="image"  data-toggle="dropdown" aria-haspopup="false" aria-expanded="true" style="    border: none;">
+                <div class="image">
+                    <img style="    border-radius: 61px;
+                    height: 43px;" src="<%=user.image %>" alt="">
+                </div>
+            </button>
+            <div class="dropdown-menu" style="    margin-left: -119px;">
+                <p><%= user.DisplayName %></p>
+                <p><%= user.email %></p>
+                <p>
+
+               <a href="/logout">logout</a> </p>
+                <p><a href="/change_account">switch account</a></p>
+            </div>
+          </div>
+        
+    </nav>
+
+    <div class="first_container">
+        <div class="create_form">
+            <div class="first">
+                <p>Start a new form</p>
+            </div>
+            <div class="second">
+                <a href="/create_form" style="    font-size: 70px;
+                background-color: white;
+                text-decoration: none;
+                width: 130px;
+                text-align: center;
+                border: 1px solid;">+</a>
+                <p>Blank</p>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <div class="current_forms" style="    margin-top: 31px;">
+        <div></div>
+        <div class="forms" style="    grid-template-columns: repeat(auto-fill, minmax(182px, 1fr));">
+
+            <% for(let i=form_data.length-1 ; i>=0;i--){%>
+                <div class="single_form"  style="    border: 1px solid #a0a0d7;
+                border-radius: 6px;">
+                    <a href="/display/<%= form_data[i]['_id'] %>">
+                    <svg style="    width: 100%;
+                    height: 106px;" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><g id="Forms_4_"><g><g><g><g><g><path d="m451 135-105-30-30-105h-210c-24.853 0-45 20.147-45 45v422c0 24.853 20.147 45 45 45h300c24.853 0 45-20.147 45-45z" fill="#734bbd"/></g></g></g></g></g><g><circle cx="136" cy="256" fill="#fff5f5" r="15"/></g><g><circle cx="136" cy="316" fill="#fff5f5" r="15"/></g><g><circle cx="136" cy="376" fill="#fff5f5" r="15"/></g></g><g id="Forms_1_"><g><g><path d="m451 135v332c0 24.853-20.147 45-45 45h-150v-512h60l30 105z" fill="#5f45a9"/></g></g></g><g><g><path d="m346 271h-150c-8.291 0-15-6.709-15-15s6.709-15 15-15h150c8.291 0 15 6.709 15 15s-6.709 15-15 15z" fill="#fff5f5"/></g></g><g><path d="m346 331h-150c-8.291 0-15-6.709-15-15s6.709-15 15-15h150c8.291 0 15 6.709 15 15s-6.709 15-15 15z" fill="#fff5f5"/></g><g><path d="m346 391h-150c-8.291 0-15-6.709-15-15s6.709-15 15-15h150c8.291 0 15 6.709 15 15s-6.709 15-15 15z" fill="#fff5f5"/></g><g fill="#e3e7ea"><path d="m256 391h90c8.291 0 15-6.709 15-15s-6.709-15-15-15h-90z"/><path d="m256 331h90c8.291 0 15-6.709 15-15s-6.709-15-15-15h-90z"/><path d="m256 271h90c8.291 0 15-6.709 15-15s-6.709-15-15-15h-90z"/></g><path d="m451 135h-105c-16.5 0-30-13.5-30-30v-105c3.9 0 7.8 1.5 10.499 4.501l120 120c3.001 2.699 4.501 6.599 4.501 10.499z" fill="#9b7ed0"/></g></svg>
+                    <% var months_arr=['Jan','Feb','March','April','May','June','July','Aug','Sept','Oct','Nov','Dec'];
+                        var date=new Date(form_data[i]['time']); var year=date.getFullYear(); var
+                        month=months_arr[date.getMonth()]; var day=date.getDate(); var full_date=month+" "+day+" "+year;
+                    
+                    %>
+                </a>
+                    <img src="" alt="">
+                    <p class=" title">
+                        <%=form_data[i]['Title']%>
+                            </p>
+                            <div style="display: flex;">
+
+                                <p class="date" style="    font-size: 12px;">
+                                    created
+                                    <%= full_date %>
+                                </p>
+                                <div class="btn" style="    margin: 0px;
+                                padding: 0px;">
+                                    <button type="button" class="btn custom_dot" data-toggle="dropdown" style="    padding: 0px;"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                        </svg>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-left">
+                                        <a href="/delete/<%= form_data[i]['_id'] %>" style="text-decoration: none;">
+                                            <button class="dropdown-item" type="button"  >delete</button>
+                                        </a>
+                                        <button class="dropdown-item" type="button" onclick="changemodalLink(`<%= form_data[i]['_id'] %>`)" class="btn" data-toggle="modal" data-target="#exampleModal">
+                                            Share
+                                          </button>
+                                          
+                                          <!-- Modal -->
+                                          
+                                        <!-- <button class="dropdown-item" type="button">Something else here</button> -->
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                <%} %>
+        </div>
+
+    </div>
+    <!-- modal    -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Share</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="display: flex; ">
+              <p class="link" id="shareLink">
+              </p>
+              <a onclick="copy_to_clipboard()" style=" cursor: pointer;   margin-left: 17px;" ><svg style="    height: 18px;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 477.867 477.867" style="enable-background:new 0 0 477.867 477.867;" xml:space="preserve">
+           <g>
+               <g>
+                   <path d="M341.333,85.333H51.2c-28.277,0-51.2,22.923-51.2,51.2v290.133c0,28.277,22.923,51.2,51.2,51.2h290.133
+                       c28.277,0,51.2-22.923,51.2-51.2V136.533C392.533,108.256,369.61,85.333,341.333,85.333z M358.4,426.667
+                       c0,9.426-7.641,17.067-17.067,17.067H51.2c-9.426,0-17.067-7.641-17.067-17.067V136.533c0-9.426,7.641-17.067,17.067-17.067
+                       h290.133c9.426,0,17.067,7.641,17.067,17.067V426.667z"/>
+               </g>
+           </g>
+           <g>
+               <g>
+                   <path d="M426.667,0h-307.2c-28.277,0-51.2,22.923-51.2,51.2c0,9.426,7.641,17.067,17.067,17.067S102.4,60.626,102.4,51.2
+                       s7.641-17.067,17.067-17.067h307.2c9.426,0,17.067,7.641,17.067,17.067v307.2c0,9.426-7.641,17.067-17.067,17.067
+                       s-17.067,7.641-17.067,17.067s7.641,17.067,17.067,17.067c28.277,0,51.2-22.923,51.2-51.2V51.2
+                       C477.867,22.923,454.944,0,426.667,0z"/>
+               </g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           <g>
+           </g>
+           </svg></a>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        <script>
+            function copy_to_clipboard() {
+  var copyText = document.getElementById("shareLink").innerHTML
+  navigator.clipboard.writeText(copyText).then(()=>{
+      
+}, () => {
+      
+    });
+}
+
+
+
+
+            function changemodalLink(view){
+                console.log(`form/${view}`)
+                document.getElementById('shareLink').innerHTML=`/form/${view}`
+
+            }
+        </script>
+</body>
+
+</html>
