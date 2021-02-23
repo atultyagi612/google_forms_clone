@@ -2,7 +2,6 @@
 
 A clone of Google forms using nodejs
 
-This repository contains code for google forms clone using Nodejs , express .
 
 # Getting Start
 
@@ -46,6 +45,8 @@ Run application by ``` npm start  ```
 
 Then open your browser to localhost:3000.
 
+# Screenshots
+
 ### **Login page**
 
 
@@ -84,8 +85,9 @@ Then open your browser to localhost:3000.
 
 Distributed under Apache 2.0 Licence . See [Licence](LICENSE) for more information.
 
-# Any suggestions 
+# Contact
 
 * Atul Tyagi - [atultyagi.at.612@gmail.com](atultyagi.at.612@gmail.com)
+* Project link - [https://github.com/atultyagi612/google_forms_clone](https://github.com/atultyagi612/google_forms_clone)
 
 
