@@ -41,4 +41,24 @@ Installing  all the dependances by ``` npm install ```
 
 Run application by ``` npm start  ```
 
+### **Login page**
 
+
+![](images/login.jpg)
+
+
+### **Create Form**
+
+![](images/create_form.gif)
+
+### **Add Images to form**
+
+![](images/add_images.jpg)
+
+### **Share Form**
+
+![](images/share.jpg)
+
+### **User form submission**
+
+![](images/user_form.gif)
