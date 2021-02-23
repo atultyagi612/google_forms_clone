@@ -36,10 +36,15 @@ uuidv4
    * Email after succesfull submission
 
 # DEMO 
+[Demo link herokuu](https://google-forms-clone-atul.herokuapp.com)
+
+After cloning this repository ```https://github.com/atultyagi612/google_forms_clone.git```
 
 Installing  all the dependances by ``` npm install ```
 
 Run application by ``` npm start  ```
+
+Then open your browser to localhost:3000.
 
 ### **Login page**
 
@@ -62,3 +67,25 @@ Run application by ``` npm start  ```
 ### **User form submission**
 
 ![](images/user_form.gif)
+
+### **Email after submission**
+
+![](images/email_result.jpg)
+
+### **All the submissions**
+
+![](images/responses.jpg)
+
+### **Admin can update user submissions**
+
+![](images/update_user_submission.jpg)
+
+# License
+
+Distributed under Apache 2.0 Licence . See [Licence](LICENSE) for more information.
+
+# Any suggestions 
+
+* Atul Tyagi - [atultyagi.at.612@gmail.com](atultyagi.at.612@gmail.com)
+
+
